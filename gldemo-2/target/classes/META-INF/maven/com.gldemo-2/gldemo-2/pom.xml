@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.gldemo-1</groupId>
-	<artifactId>gldemo-1</artifactId>
+	<groupId>com.gldemo-2</groupId>
+	<artifactId>gldemo-2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>gldemo-1</name>
+	<name>gldemo-2</name>
 	<description>Demo project for Spring Boot</description>
 
 	<!-- <parent>
@@ -90,7 +90,14 @@
             <version>${joda-time.version}</version>
         </dependency>
         
-       <dependency>
+        <!-- spring-kafka -->
+	    <!-- <dependency>
+	      <groupId>org.springframework.kafka</groupId>
+	      <artifactId>spring-kafka</artifactId>
+	      <version>${spring-kafka.version}</version>
+	    </dependency> -->
+	    
+	    <dependency>
             <groupId>com.gldemo-3</groupId>
             <artifactId>gldemo-3</artifactId>
             <version>0.0.1-SNAPSHOT</version>

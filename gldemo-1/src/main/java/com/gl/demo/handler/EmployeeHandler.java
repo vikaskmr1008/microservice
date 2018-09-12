@@ -59,7 +59,7 @@ public class EmployeeHandler {
 	}
 	@ApiOperation(value = "adding a new employee")
 	@PostMapping
-	public ResponseEntity<Employee> createResource(@Valid @RequestBody Employee emp){
+	public ResponseEntity<Employee> createResource(@Valid @RequestBody Employee emp) {
 		service.create(emp);
 		try {
 			sender.send("test12345", new ObjectMapper().writeValueAsString(emp));
