@@ -26,12 +26,10 @@ public class EmployeeService implements IEmployeeService {
 	@Autowired
 	private IEmployeeRepository repo;
 	
-	@Override
 	public Optional<Employee> findOne(String id) {
 		return repo.findById(id);
 	}
 
-	@Override
 	public List<Employee> findAll() {
 		List<Employee> emp = new ArrayList<Employee>();
         Iterator<Employee> it = repo.findAll().iterator();
@@ -41,31 +39,26 @@ public class EmployeeService implements IEmployeeService {
 		return emp;
 	}
 
-	@Override
 	public List<Employee> findByName(String name) {
 		return repo.findByName(name);
 	}
 
-	@Override
 	public List<Employee> findByEmail(String email) {
 		return repo.findByEmail(email);
 	}
 
-	@Override
 	public void create(Employee emp) {
 		emp.setId(UUID.randomUUID().toString());
 		emp.setCreated(DateTime.now());
         repo.save(emp);
 	}
 
-	@Override
 	public void update(Employee emp) {
 		emp.setUpdated(DateTime.now());
         repo.save(emp);
 		
 	}
 
-	@Override
 	public void delete(Employee emp) {
 		repo.delete(emp);
 	}

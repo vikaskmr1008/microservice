@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gl.demo.model.Employee;
+import com.gl.demo.producer.Sender;
 import com.gl.demo.service.IEmployeeService;
 
 import io.swagger.annotations.Api;
@@ -36,6 +39,9 @@ public class EmployeeHandler {
 	
 	@Autowired
 	private IEmployeeService service;
+	
+	@Autowired
+	private Sender sender;
 	
 	@GetMapping
 	public ResponseEntity<List<Employee>> allEmployee() {
@@ -55,6 +61,11 @@ public class EmployeeHandler {
 	@PostMapping
 	public ResponseEntity<Employee> createResource(@Valid @RequestBody Employee emp){
 		service.create(emp);
+		try {
+			sender.send("test12345", new ObjectMapper().writeValueAsString(emp));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 		return new ResponseEntity<Employee>(emp, HttpStatus.CREATED);
 	}
 	
