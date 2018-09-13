@@ -69,4 +69,9 @@ public class EmployeeHandler {
 		return new ResponseEntity<Employee>(emp, HttpStatus.CREATED);
 	}
 	
+	@GetMapping("/async/{id}")
+	public ResponseEntity<Employee> findAsyncData(@PathVariable(value = "id") String id) {
+		return new ResponseEntity<Employee>(service.asyncCall(id), HttpStatus.OK);
+	}
+	
 }

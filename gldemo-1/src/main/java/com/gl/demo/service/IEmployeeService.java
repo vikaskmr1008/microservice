@@ -17,6 +17,8 @@ public interface IEmployeeService {
 	Optional<Employee> findOne(String id);
 
     List<Employee> findAll();
+    
+    Employee asyncCall(String id);
 
     List<Employee> findByName(String name);
 

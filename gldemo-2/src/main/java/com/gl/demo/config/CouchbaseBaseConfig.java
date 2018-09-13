@@ -22,7 +22,7 @@ import com.couchbase.client.java.env.DefaultCouchbaseEnvironment;
  *
  * @author vikas.kumar3
  */
-@EnableCouchbaseRepositories(basePackages="com.gl.iam.repo")
+@EnableCouchbaseRepositories(basePackages="com.gl.demo.repo")
 @Configuration
 public class CouchbaseBaseConfig extends AbstractCouchbaseConfiguration {
         

@@ -11,10 +11,12 @@ import java.util.UUID;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 import com.gl.demo.model.Employee;
 import com.gl.demo.repo.IEmployeeRepository;
+import com.gl.demo.utils.RestClient;
 
 /**
  * The Class EmployeeService.
@@ -61,5 +63,10 @@ public class EmployeeService implements IEmployeeService {
 
 	public void delete(Employee emp) {
 		repo.delete(emp);
+	}
+
+	public Employee asyncCall(String id) {
+		String url = "http://localhost:9082/demo2/v2/employee/"+id;
+		return  RestClient.get(url, MediaType.APPLICATION_JSON, Employee.class);
 	}
 }
