@@ -32,14 +32,14 @@ import org.springframework.web.client.RestTemplate;
 import com.gl.demo.model.User;
 
 /**
- * RestClient is the main entry point to the fluent API used to build and
+ * RestUtils is the main entry point to the fluent API used to build and
  * execute client requests in order to consume responses returned.
  */
-public final class RestClient {
+public final class RestUtils {
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory
-            .getLogger(RestClient.class);
+            .getLogger(RestUtils.class);
 
     /** The shared RestTemplateBuilder. */
     private static RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder();
@@ -50,7 +50,7 @@ public final class RestClient {
     /**
      * Instantiates a new rest client.
      */
-    private RestClient() {
+    private RestUtils() {
         super();
     }
     
@@ -85,7 +85,7 @@ public final class RestClient {
         try {
         	return restTemplate.exchange(url, HttpMethod.GET, requestEntity, parameterizedTypeReference); 		
         } catch (RestClientException ex) {
-        	LOGGER.error("RestClient Error while {} "+HttpMethod.GET+" to {} \""+url+"\". Exception occurred : {} ", ex);
+        	LOGGER.error("RestUtils Error while {} "+HttpMethod.GET+" to {} \""+url+"\". Exception occurred : {} ", ex);
         	throw ex;
         }
 	}
@@ -181,7 +181,7 @@ public final class RestClient {
     	try {
         	return restTemplate.exchange(url, method, requestEntity, clazz).getBody(); 		
         } catch (RestClientException ex) {
-        	LOGGER.error("RestClient Error while {} "+method+" to {} \""+url+"\". Exception occurred : {} ", ex);
+        	LOGGER.error("RestUtils Error while {} "+method+" to {} \""+url+"\". Exception occurred : {} ", ex);
         	throw ex;
         }    	
     }
@@ -192,7 +192,7 @@ public final class RestClient {
      * @param restTemplate the new rest template
      */
     public static void setRestTemplate(RestTemplate restTemplate) {
-    	RestClient.restTemplate = restTemplate;
+    	RestUtils.restTemplate = restTemplate;
     }
     
     /**

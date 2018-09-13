@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.gl.demo.model.User;
 import com.gl.demo.repo.IUserRepository;
-import com.gl.demo.utils.RestClient;
+import com.gl.demo.utils.RestUtils;
 
 /**
  * The Class UserService.
@@ -66,7 +66,7 @@ public class UserService implements IUserService {
 	}
 
 	public User asyncCall(String id) {
-		String url = "http://localhost:9082/demo2/v2/employee/"+id;
-		return  RestClient.get(url, MediaType.APPLICATION_JSON, User.class);
+		String url = "http://localhost:9082/demo2/v2/user/"+id;
+		return  RestUtils.get(url, MediaType.APPLICATION_JSON, User.class);
 	}
 }

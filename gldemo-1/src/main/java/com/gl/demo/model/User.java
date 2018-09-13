@@ -26,9 +26,6 @@ public class User implements Serializable {
     @Id
     private String id;
     
-    /** The emp id. */
-    private String uid;
-    
     /** The name. */
     private String name;
     
@@ -51,14 +48,6 @@ public class User implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getUid() {
-		return uid;
-	}
-
-	public void setUid(String uid) {
-		this.uid = uid;
 	}
 
 	public String getName() {

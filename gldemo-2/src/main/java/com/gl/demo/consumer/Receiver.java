@@ -34,8 +34,8 @@ public class Receiver {
     LOGGER.info("received payload='{}'", payload);
     latch.countDown();
     ObjectMapper mapper = new ObjectMapper();
-    User emp = mapper.readValue(payload, User.class);
-    repo.save(emp);
+    User user = mapper.readValue(payload, User.class);
+    repo.save(user);
     
   }
 }

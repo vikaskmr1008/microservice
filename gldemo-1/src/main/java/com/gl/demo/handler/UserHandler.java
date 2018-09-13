@@ -44,7 +44,7 @@ public class UserHandler {
 	private Sender sender;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> allEmployee() {
+	public ResponseEntity<List<User>> allUser() {
 		List<User> empList = service.findAll();
 		if (empList.isEmpty()) {
 			return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
