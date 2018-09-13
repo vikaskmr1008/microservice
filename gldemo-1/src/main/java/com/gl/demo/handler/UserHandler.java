@@ -20,58 +20,58 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gl.demo.model.Employee;
+import com.gl.demo.model.User;
 import com.gl.demo.producer.Sender;
-import com.gl.demo.service.IEmployeeService;
+import com.gl.demo.service.IUserService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * The Class EmployeeHandler.
+ * The Class UserHandler.
  *
  * @author vikas.kumar3
  */
 @RestController
-@Api(tags = "Employee Information")
-@RequestMapping(path="/v1/employee")
-public class EmployeeHandler {
+@Api(tags = "User Information")
+@RequestMapping(path="/v1/user")
+public class UserHandler {
 	
 	@Autowired
-	private IEmployeeService service;
+	private IUserService service;
 	
 	@Autowired
 	private Sender sender;
 	
 	@GetMapping
-	public ResponseEntity<List<Employee>> allEmployee() {
-		List<Employee> empList = service.findAll();
+	public ResponseEntity<List<User>> allEmployee() {
+		List<User> empList = service.findAll();
 		if (empList.isEmpty()) {
-			return new ResponseEntity<List<Employee>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Employee>>(empList, HttpStatus.OK);
+		return new ResponseEntity<List<User>>(empList, HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "Fetching employee by id")
+	@ApiOperation(value = "Fetching user by id")
 	@GetMapping("/{id}")
-	private ResponseEntity<Optional<Employee>> findEmpById(@PathVariable(value = "id") String id){
+	private ResponseEntity<Optional<User>> findUserById(@PathVariable(value = "id") String id){
 		return ResponseEntity.ok(service.findOne(id));
 	}
-	@ApiOperation(value = "adding a new employee")
+	@ApiOperation(value = "adding a new user")
 	@PostMapping
-	public ResponseEntity<Employee> createResource(@Valid @RequestBody Employee emp) {
+	public ResponseEntity<User> createResource(@Valid @RequestBody User emp) {
 		service.create(emp);
 		try {
 			sender.send("test12345", new ObjectMapper().writeValueAsString(emp));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return new ResponseEntity<Employee>(emp, HttpStatus.CREATED);
+		return new ResponseEntity<User>(emp, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/async/{id}")
-	public ResponseEntity<Employee> findAsyncData(@PathVariable(value = "id") String id) {
-		return new ResponseEntity<Employee>(service.asyncCall(id), HttpStatus.OK);
+	public ResponseEntity<User> findAsyncData(@PathVariable(value = "id") String id) {
+		return new ResponseEntity<User>(service.asyncCall(id), HttpStatus.OK);
 	}
 	
 }

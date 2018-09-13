@@ -29,7 +29,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.gl.demo.model.Employee;
+import com.gl.demo.model.User;
 
 /**
  * RestClient is the main entry point to the fluent API used to build and
@@ -75,8 +75,8 @@ public final class RestClient {
         return restTemplateExchange(url, HttpMethod.GET, requestEntity, claazz);
     }
 
-	public static <T> ResponseEntity<List<Employee>> get(String url, MediaType applicationJson,
-			ParameterizedTypeReference<List<Employee>> parameterizedTypeReference) {
+	public static <T> ResponseEntity<List<User>> get(String url, MediaType applicationJson,
+			ParameterizedTypeReference<List<User>> parameterizedTypeReference) {
 		final HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.setAccept(Arrays.asList(applicationJson));
 

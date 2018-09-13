@@ -22,8 +22,8 @@ public class SwaggerConfig {
 	public Docket api() {                
 	    return new Docket(DocumentationType.SWAGGER_2)          
 	      .select()
-	      .apis(RequestHandlerSelectors.basePackage("com.gl.iam.handler"))
-	      .paths(PathSelectors.ant("/demo/v1/demo1/**"))
+	      .apis(RequestHandlerSelectors.basePackage("com.gl.demo.handler"))
+	      .paths(PathSelectors.ant("/demo2/v2/user/**"))
 	      .build()
 	      .apiInfo(apiInfo());
 	}

@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gl.demo.model.Employee;
-import com.gl.demo.repo.IEmployeeRepository;
+import com.gl.demo.model.User;
+import com.gl.demo.repo.IUserRepository;
 
 @Component
 public class Receiver {
@@ -21,7 +21,7 @@ public class Receiver {
   private static final Logger LOGGER = LoggerFactory.getLogger(Receiver.class);
   
   @Autowired
-  private IEmployeeRepository repo;
+  private IUserRepository repo;
 
   private CountDownLatch latch = new CountDownLatch(1);
 
@@ -34,7 +34,7 @@ public class Receiver {
     LOGGER.info("received payload='{}'", payload);
     latch.countDown();
     ObjectMapper mapper = new ObjectMapper();
-    Employee emp = mapper.readValue(payload, Employee.class);
+    User emp = mapper.readValue(payload, User.class);
     repo.save(emp);
     
   }

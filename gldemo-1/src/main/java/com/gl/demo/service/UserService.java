@@ -14,59 +14,59 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
-import com.gl.demo.model.Employee;
-import com.gl.demo.repo.IEmployeeRepository;
+import com.gl.demo.model.User;
+import com.gl.demo.repo.IUserRepository;
 import com.gl.demo.utils.RestClient;
 
 /**
- * The Class EmployeeService.
+ * The Class UserService.
  *
  * @author vikas.kumar3
  */
 @Component
-public class EmployeeService implements IEmployeeService {
+public class UserService implements IUserService {
 	@Autowired
-	private IEmployeeRepository repo;
+	private IUserRepository repo;
 	
-	public Optional<Employee> findOne(String id) {
+	public Optional<User> findOne(String id) {
 		return repo.findById(id);
 	}
 
-	public List<Employee> findAll() {
-		List<Employee> emp = new ArrayList<Employee>();
-        Iterator<Employee> it = repo.findAll().iterator();
+	public List<User> findAll() {
+		List<User> emp = new ArrayList<User>();
+        Iterator<User> it = repo.findAll().iterator();
         while (it.hasNext()) {
             emp.add(it.next());
         }
 		return emp;
 	}
 
-	public List<Employee> findByName(String name) {
+	public List<User> findByName(String name) {
 		return repo.findByName(name);
 	}
 
-	public List<Employee> findByEmail(String email) {
+	public List<User> findByEmail(String email) {
 		return repo.findByEmail(email);
 	}
 
-	public void create(Employee emp) {
+	public void create(User emp) {
 		emp.setId(UUID.randomUUID().toString());
 		emp.setCreated(DateTime.now());
         repo.save(emp);
 	}
 
-	public void update(Employee emp) {
+	public void update(User emp) {
 		emp.setUpdated(DateTime.now());
         repo.save(emp);
 		
 	}
 
-	public void delete(Employee emp) {
+	public void delete(User emp) {
 		repo.delete(emp);
 	}
 
-	public Employee asyncCall(String id) {
+	public User asyncCall(String id) {
 		String url = "http://localhost:9082/demo2/v2/employee/"+id;
-		return  RestClient.get(url, MediaType.APPLICATION_JSON, Employee.class);
+		return  RestClient.get(url, MediaType.APPLICATION_JSON, User.class);
 	}
 }
